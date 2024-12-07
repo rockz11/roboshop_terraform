@@ -33,11 +33,11 @@ resource "aws_instance" "instance" {
 	Name = "${var.component_name}-${var.env}"
   }
   provisioner "local-exec" {
-    command = <<EOL
+	command = <<EOL
 cd/home/ec2-user/roboshop-ansible
 ansible-playbook -i ${self.private}, -e ansible_user=ec2-user -e ansible_password=DevOps321 -e app_name=${var.component_name} -e env=${var.env} main.yml
   }
 }
 
-# Output in child module wont print on screen.
-# Output in root module will print on the screen as output.
+
+
