@@ -1,3 +1,11 @@
+terraform {
+  required_providers {
+    null = {
+      source  = "hashicorp/null"
+      version = "3.2.2"
+    }
+  }
+}
 resource "aws_security_group" "sg" {
   name  = "${var.component_name}-${var.env}.sg"
   description = "Inbound allow for ${var.component_name}"
@@ -33,13 +41,16 @@ resource "aws_instance" "instance" {
     Name   = "${var.component_name}-${var.env}"
 
   }
+}
+
+resource "null_resource" "ansible-pull" {
 
   provisioner "remote-exec" {
     connection {
       type = "ssh"
       user = "ec2-user"
       password = "DevOps321"
-      host = self.private_ip
+      host = aws_instance.instance.private_ip
     }
     inline = [
       "sudo labauto ansible",
@@ -48,5 +59,4 @@ resource "aws_instance" "instance" {
     ]
   }
 }
-
 
