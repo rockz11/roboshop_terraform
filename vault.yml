@@ -1,0 +1,7 @@
+- name: get vault credentials
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: Print password
+      ansible.builtin.debug:
+        msg: "{{ lookup('hashi_vault', 'test/My_credentials:password token= {{ vault_token }}url=https://172.31.94.86:8200 validate_certs=False')}}"
