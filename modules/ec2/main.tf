@@ -39,6 +39,7 @@ resource "aws_instance" "instance" {
   ansible-playbook -i ${self.private}, -e ansible_user=ec2-user -e ansible_password=DevOps321 -e app_name=${var.component_name} -e env=${var.env} roboshop.yml
   }
 
+
 }
 
 
