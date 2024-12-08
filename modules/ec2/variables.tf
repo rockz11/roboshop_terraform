@@ -1,6 +1,4 @@
 variable "env" {}
-variable "component_name" {}
-variable "instance_type" {}
-#variable "aws_security_group" {}
-variable "app_port" {}
-#
+variable "app_instances" {}
+variable "db_instances" {}
+variable "web_instances" {}
