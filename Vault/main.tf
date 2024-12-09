@@ -13,7 +13,8 @@ provider "vault" {
 }
 
 variable "vault_token" {}
-data "vault_genric_secret" "example"
+
+data "vault_generic_secret" "example"
   path = "test/My_credentials"
 
 #data "vault_kv_secret_v2" "example" {
@@ -22,7 +23,7 @@ data "vault_genric_secret" "example"
 #}
 
 resource "local_file" "foo" {
-  content = data.vault_generic_secret_v2.example.data.["password"]
+  content = data.vault_generic_secret.example.data["password"]
   filename = "/tmp/secret"
 }
 
