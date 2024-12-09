@@ -13,13 +13,16 @@ provider "vault" {
 }
 
 variable "vault_token" {}
-data "vault_kv_secret_v2" "example" {
-  mount = "test"
-  name  = "My_credentials"
-}
+data "vault_genric_secret" "example"
+  path = "test/My_credentials"
+
+#data "vault_kv_secret_v2" "example" {
+#  mount = "test"
+#  name  = "My_credentials"
+#}
 
 resource "local_file" "foo" {
-  content = data.vault_kv_secret_v2.example.data_json["password"]
+  content = data.vault_generic_secret_v2.example.data.["password"]
   filename = "/tmp/secret"
 }
 
