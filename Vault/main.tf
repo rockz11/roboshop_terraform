@@ -1,11 +1,3 @@
-terraform {
-  required_providers {
-    local = {
-      source  = "hashicorp/local"
-      version = "2.5.1"
-    }
-  }
-}
 provider "vault" {
   address = "https://172.31.94.86:8200"
   token = var.vault_token
